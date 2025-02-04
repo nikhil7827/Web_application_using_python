@@ -43,3 +43,11 @@ jobs:
         run: |
           docker build -t nikhil0708/flask-app:latest .
           docker push nikhil0708/flask-app:latest
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@44.197.187.50 << 'EOF'
+          docker pull your-nikhil0708/flask-app:latest
+          docker stop $(docker ps -q)
+          docker run -d -p 8080:8080 nikhil0708/flask-app
+          EOF
+
