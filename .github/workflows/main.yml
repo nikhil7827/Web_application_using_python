@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.Nikhil@1997 }}" | docker login -u "${{ secrets.Nikhil0708 }}" --password-stdin
+        run: echo "${{ Nikhil@1997 }}" | docker login -u "${{ Nikhil0708 }}" --password-stdin
 
       - name: Build and Push Docker Image
         run: |
