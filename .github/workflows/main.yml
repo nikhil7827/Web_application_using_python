@@ -40,8 +40,8 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t yourdockerhubusername/flask-app:latest .
-          docker push yourdockerhubusername/flask-app:latest
+          docker build -t nikhil0708/flask-app:latest .
+          docker push nikhil0708/flask-app:latest
 
   deploy:
     runs-on: ubuntu-latest
