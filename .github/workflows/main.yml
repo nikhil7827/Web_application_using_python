@@ -53,9 +53,9 @@ jobs:
          HOST: 44.197.187.50
          USER: ec2-user
         run: |
-         echo "$PRIVATE_KEY" > javaapllication.pem
-         chmod 600 "javaapllication.pem"
-         ssh -i javaapllication.pem -o StrictHostKeyChecking=no $ec2-user@$44.197.187.50 << 'EOF'
+         echo "$PRIVATE_KEY" > secrets.MY_PEM_FILE
+         chmod 600 "secrets.MY_PEM_FILE"
+         ssh -i secrets.MY_PEM_FILE -o StrictHostKeyChecking=no $ec2-user@$44.197.187.50 << 'EOF'
          echo "Pulling latest Docker image..."
          docker pull nikhil0708/flask-app:latest
 
