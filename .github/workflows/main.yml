@@ -49,7 +49,7 @@ jobs:
       steps:    
       - name: Deploy to EC2
         run: |
-          ssh -i "javaapllication.pem" ec2-user@44.197.187.50 << 'EOF'
+          ssh -i "ssh -i "javaapllication.pem" ec2-user@ec2-44-197-187-50.compute-1.amazonaws.com" ec2-user@44.197.187.50 << 'EOF'
           docker pull your-nikhil0708/flask-app:latest
           docker stop $(docker ps -q)
           docker run -d -p 8080:8080 nikhil0708/flask-app
