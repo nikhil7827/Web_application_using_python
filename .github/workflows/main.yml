@@ -49,6 +49,9 @@ jobs:
     steps:
       - name: Deploy to Render (or Heroku)
         run: echo "Deploy step goes here"
+
+      - name: Deploy to Render
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
          
 
 
