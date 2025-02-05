@@ -48,10 +48,27 @@ jobs:
       needs: docker
       steps:    
       - name: Deploy to EC2
+        env:
+         PRIVATE_KEY: ${{ secrets.AWS_EC2_SSH_KEY }}
+         HOST: 44.197.187.50
+         USER: ec2-user
         run: |
-          ssh -i "ssh -i "javaapllication.pem" ec2-user@ec2-44-197-187-50.compute-1.amazonaws.com" ec2-user@44.197.187.50 << 'EOF'
-          docker pull your-nikhil0708/flask-app:latest
-          docker stop $(docker ps -q)
-          docker run -d -p 8080:8080 nikhil0708/flask-app
-          EOF
+         echo "$PRIVATE_KEY" > javaapllication.pem
+         chmod 400 "javaapllication.pem"
+         ssh -i javaapllication.pem -o StrictHostKeyChecking=no $ec2-user@$44.197.187.50 << 'EOF'
+         echo "Pulling latest Docker image..."
+         docker pull nikhil0708/flask-app:latest
+
+         echo "Stopping running container if any..."
+         docker ps -q | xargs -r docker stop
+
+         echo "Removing old container if any..."
+         docker ps -a -q | xargs -r docker rm
+
+         echo "Running new container..."
+         docker run -d -p 8080:8080 --name flask-app nikhil0708/flask-app:latest
+
+         echo "Deployment Complete!"
+         EOF
+
 
