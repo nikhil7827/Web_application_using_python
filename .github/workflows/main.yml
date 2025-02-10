@@ -43,12 +43,4 @@ jobs:
         run: |
           docker build -t nikhil0708/flask-app:latest .
           docker push nikhil0708/flask-app:latest
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Render (or Heroku)
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
-         
-
 
