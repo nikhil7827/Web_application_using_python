@@ -37,9 +37,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Log in to Docker Hub
-        run: echo "Nikhil@1997" | docker login -u "Nikhil0708" --password-stdin
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build and Push Docker Image
         run: |
           docker build -t nikhil0708/flask-app:latest .
           docker push nikhil0708/flask-app:latest
+
